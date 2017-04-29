@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="javascript/game.js"></script>
+</head>
+
+<body background="images/StarWarsBackground.png">
+	<div class="titles">
+    	<p class="title">Star Wars (prequels)</p>
+    	<h1 class="title">Hangman</h1>
+    </div>
+    <div class="container">
+		<div class="boxes">
+    		<div class="leftbox">
+    			<img class="lasta" alt="random" src="images/Darth-Maul_632eb5af.jpeg">
+    		</div>
+    		<div class="rightbox">
+    			<p class="rp">Press any key to get started!</p>
+    			<p class="rp" id="wins">Wins:</p>
+    			<p class="rp">Current Word</p>
+    			<p class="rp" id="word">()</p>
+				<p class="rp" >Number of guesses remaining:</p>
+				<p class="rp" id="numberG">()</p>
+				<p class="rp">Letters already guessed:</p>
+				<p class="rp" id="letters">()</p>
+    		</div>
+    	</div>
+    </div> 
+
+    <script type="text/javascript">
+
+    //VARIABLES
+        //counters
+        var winsCount = 0;
+        var remaining = 15;
+
+        //setting elements
+        var wins = document.getElementById("wins");
+        var curWord = document.getElementById('word');
+        var numberG = document.getElementById("numberG");
+        var letters = document.getElementById("letters")
+
+        //innnerHTML counters
+        wins.innerHTML = ("Wins: " + winsCount);
+        numberG.innerHTML = remaining;
+
+        //arrays
+        var names = [
+        ["a", "n", "i", "k", "a" "n"],
+        ["d", "a","r", "t", "h", "m", "a", "u", "l"],
+        ["g", "r", "e", "v", "i", "o", "u", "s"]
+        ]
+
+        var lettersbeingpushed = ["q"];
+
+        var nameCheck = function(array) {
+            namesWordLength = array[winsCount].length;
+            wordy = "";
+            for (i = 0; i < namesWordLength; i++) {
+                wordy = (wordy + "_ ");
+                console.log(wordy)
+            }
+        }
+        //function that 
+        var letterCheck = function(array) {
+            namesWordLength = array[winsCount].length;
+            namesWord = array[winsCount];
+            var wordy = [];
+            for (i = 0; i < namesWordLength; i++) {
+                namesWordLetter = namesWord[i];
+                if (namesWordLetter === this.letter) {
+                    var guessedCorrect = "go";
+                    letterPosition = i;
+                    i=namesWordLength;
+                }
+                else {
+                    guessedCorrect = false;
+                }
+            }
+        }
+
+
+        document.onkeyup = function(event) {
+            //takes letter pushed and makes it letter
+            var letter = String.fromCharCode(event.keyCode).toLowerCase();
+            guessedLength = lettersbeingpushed.length;
+            nameCheck(names);
+            letterCheck(names);
+            console.log(wordy)
+            curWord.innerHTML = wordy;
+            letters.innerHTML = lettersbeingpushed;
+            //for loop runs however long the lettersbeingpushed array is which is growing with every key push that is not a repeat.
+            for (i = 0; i < guessedLength; i++) {
+                //if than statment checks if the letter being pushed is a repeat.
+                if (letter === lettersbeingpushed[i]) {
+                    rightOrWrong = "repeat";
+                    i=guessedLength;
+                }
+                else if (guessedCorrect === "go"){
+                    wordy.charAt(i) = lettersbeingpushed[i];
+
+                    console.log(guessedCorrect);
+                }
+                else {
+                    rightOrWrong = "fine";
+                }
+            }
+            if (rightOrWrong === "repeat") {
+                console.log("repeat letter");
+            }
+
+
+            //first pushes letter to the lettersbeingpushed array. 
+            else if (guessedCorrect === ){
+                lettersbeingpushed.push(letter);
+                remaining = (remaining - 1);
+                console.log(lettersbeingpushed);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
