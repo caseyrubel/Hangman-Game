@@ -1,4 +1,4 @@
-# Eat Da Burger!
+# Hangman
 
 Link to the deployed Github Page: https://caseyrubel.github.io/Hangman-Game/
 
